@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from "react";
 import { Search, Video, Music, Terminal, Code, Info } from "lucide-react";
-import { getInfoVideo } from "@/actions/get-info-video";
 import { videoFormat } from "@distube/ytdl-core";
 export const DownloadCard = () => {
   const [activeTab, setActiveTab] = useState<"video" | "audio">("video");
@@ -18,7 +17,14 @@ export const DownloadCard = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-      const videoInfo = await getInfoVideo(url);
+      const videoInfo : {
+        title: string;
+        duration: string;
+        author: string;
+        thumbnail: string;
+        audio: videoFormat[];
+        video: videoFormat[];
+      } = await fetch("/api/info",{method:"POST",body:JSON.stringify({url}),headers:{"Content-Type":"application/json"}}).then(res=>res.json());
       setVideoInfo({
         title: videoInfo.title,
         duration: videoInfo.duration,

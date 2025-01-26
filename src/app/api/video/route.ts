@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { createStreamVideo } from "yt-converter";
 
 
-export const maxDuration = 300;
-
 export const GET = async (req:NextRequest)=>{
     const url = req.nextUrl.searchParams.get("url");
     const itag = Number(req.nextUrl.searchParams.get("itag"));
