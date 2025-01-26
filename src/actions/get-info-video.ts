@@ -1,6 +1,8 @@
 "use server"
 import { getInfo } from "yt-converter";
 
+export const maxDuration = 300;
+
 export const getInfoVideo = async (url: string) => {
   const data = await getInfo(url);
   //transform seconds to minutes:seconds format
