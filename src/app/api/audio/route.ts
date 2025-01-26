@@ -28,6 +28,7 @@ export const GET = async (req:NextRequest)=>{
           stream.on('error', (err) => {
             console.error('Stream error:', err);
             controller.error(err); // Manejar errores
+            stream.destroy();
           });
         },
       });
