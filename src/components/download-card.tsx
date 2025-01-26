@@ -96,7 +96,7 @@ export const DownloadCard = () => {
                     <>
                     {videoInfo.video.map((format,index)=>{
                       return <a download={`${videoInfo.title}.mp4`} href={`/api/video?url=${url}&itag=${format.itag}`} key={index} className="py-2 px-4 bg-black text-white rounded-lg hover:bg-gray-800">
-                        {format.qualityLabel}
+                        {format.qualityLabel} () ({(Number(format.contentLength) / 1000000).toFixed(2)} MB)
                       </a>
                     })}
                     </>
